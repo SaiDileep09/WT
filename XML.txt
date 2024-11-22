@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE catalog [
+  <!ELEMENT catalog (book+)>
+  <!ELEMENT book (title, author, isbn, year)>
+  <!ELEMENT title (#PCDATA)>
+  <!ELEMENT author (#PCDATA)>
+  <!ELEMENT isbn (#PCDATA)>
+  <!ELEMENT year (#PCDATA)>
+  <!ATTLIST book id ID #REQUIRED>
+]>
+<catalog>
+  <book id="b001">
+    <title>XML Programming</title>
+    <author>John Doe</author>
+    <isbn>978-1234567890</isbn>
+    <year>2020</year>
+  </book>
+  <book id="b002">
+    <title>Advanced XML</title>
+    <author>Jane Smith</author>
+    <isbn>978-0987654321</isbn>
+    <year>2021</year>
+  </book>
+</catalog>
