@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP Request Example</title>
+</head>
+<body>
+    <h1>HTTP Request and Response Example</h1>
+    <button id="fetchData">Fetch Random User</button>
+    <div id="output" style="margin-top: 20px;"></div>
+
+    <script>
+        // Select button and output elements
+        const button = document.getElementById('fetchData');
+        const output = document.getElementById('output');
+
+        // Function to fetch data from an API
+        async function fetchRandomUser() {
+            const apiUrl = 'https://randomuser.me/api/';
+            
+            try {
+                // Make a GET request to the API
+                const response = await fetch(apiUrl);
+
+                // Check if the request was successful
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                // Parse the JSON response
+                const data = await response.json();
+
+                // Extract user information
+                const user = data.results[0];
+                const userInfo = `
+                    <p><strong>Name:</strong> ${user.name.first} ${user.name.last}</p>
+                    <p><strong>Email:</strong> ${user.email}</p>
+                    <p><strong>Location:</strong> ${user.location.city}, ${user.location.country}</p>
+                `;
+
+                // Display user information in the output div
+                output.innerHTML = userInfo;
+            } catch (error) {
+                // Handle errors and display a message
+                output.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+
+        // Add click event listener to the button
+        button.addEventListener('click', fetchRandomUser);
+    </script>
+</body>
+</html>
